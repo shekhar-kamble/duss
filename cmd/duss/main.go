@@ -12,6 +12,7 @@ import (
 	"io/ioutil"
 	"os"
 	"os/signal"
+	"syscall"
 )
 
 func main() {
@@ -26,13 +27,12 @@ func main() {
 
 	h := server.InitServer(s)
 	h.SetHandlers()
-	go func() {
+	go func(pid int) {
 		if err := h.Listen(viper.GetString("ListenAddr")); err != nil {
-			// TODO: handle actual failure with panic
 			log.Error(err)
+			syscall.Kill(pid, syscall.SIGINT)
 		}
-	}()
-
+	}(syscall.Getpid())
 	<- quit
 	s.Close()
 	h.Close()
