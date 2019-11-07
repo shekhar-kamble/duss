@@ -1,0 +1,14 @@
+.DS_Store
+.*.sw[pon]
+dist/
+*.db
+.ropeproject/
+.project
+.pydevproject
+.idea/
+.coverage
+.vagrant/
+.cache/
+test.db
+.git/
+releases/*

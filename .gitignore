@@ -1,3 +1,4 @@
 vendor/*
 .idea/*
 releases/*
+.DS_Store
